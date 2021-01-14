@@ -2,7 +2,6 @@
 #include <windows.h>
 #include <time.h>
 #include <unistd.h>
-void gotoxy(int, int);
 void setTable(void);
 void drawTable(void);
 void moveSnake(void);
@@ -37,13 +36,6 @@ int main (void){
 	moveSnake();
 	usleep(50000);
 	}
-}
-void gotoxy(int x, int y)
-{
-	COORD coord;
-	coord.X = x;
-	coord.Y = y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 void setTable(void){
 	int k;
