@@ -2,11 +2,14 @@
 #include <windows.h>
 #include <time.h>
 #include <unistd.h>
+#define xcoord 168
+#define	 ycoord 50
 void setTable(void);
 void drawTable(void);
 void moveSnake(void);
 void foodGenerator(void);
-char table[168][50]={0};
+void gotoxy(int , int);
+char table[xcoord][ycoord]={0};
 //those two array storing snakes position.
 int snakex[8400];
 int snakey[8400];
@@ -22,20 +25,25 @@ int main (void){
 	snakex[0]=84;
 	snakey[0]=25;
 	table[84][25]='*';
+//	table[80][20]='O';
+	setTable();
+	drawTable();
 	while(gameContinue){
 	if(kbhit()){
 		input=getch();
-		if(input=='w'||'a'||'s'||'d')
-		direction=input;
+		if(input=='w'||'a'||'s'||'d'){
+			if(direction=='w'&&input!='s'||direction=='a'&&input!='d'||direction=='s'&&input!='w'||direction=='d'&&input!='a')
+			direction=input;
+		}
 	}
 	if (newfood==1)
 	foodGenerator();
-	setTable();
-	drawTable();
 	newfood=0;
 	moveSnake();
 	usleep(50000);
 	}
+	gotoxy(0,100);
+	printf("Your Score is %d well done....",length);
 }
 void setTable(void){
 	int k;
@@ -58,72 +66,86 @@ void drawTable(void){
 	}
 }
 void moveSnake (void){
-	if (direction=='d'){
 		int n;
 		for(n=length;n>0;n--){
-			snakex[n]=snakex[n-1];
-			snakey[n]=snakey[n-1];
+		snakex[n]=snakex[n-1];
+		snakey[n]=snakey[n-1];
 		}
+	if (direction=='d'){
 			if(table[snakex[0]+1][snakey[0]]=='O'){
 				length++;
 				newfood=1;
 			}
+			else if(table[snakex[0]+1][snakey[0]]=='|'||table[snakex[0]+1][snakey[0]]=='-'||table[snakex[0]+1][snakey[0]]=='_')
+			gameContinue=0;
 			else
 			table[snakex[length]][snakey[length]]=0;
 			snakex[0]=snakex[1]+1;
 			snakey[0]=snakey[1];
 			table[snakex[0]][snakey[0]]='*';
+			
+			gotoxy(snakex[0],snakey[0]);
+			printf("*");
+			gotoxy(snakex[length],snakey[length]);
+			printf(" ");
+			
 		
 	}
 	else if (direction=='a'){
-		int n;
-		for(n=length;n>0;n--){
-			snakex[n]=snakex[n-1];
-			snakey[n]=snakey[n-1];
-		}
 		if(table[snakex[0]-1][snakey[0]]=='O'){
 			length++;
 			newfood=1;
 		}
+		else if (table[snakex[0]-1][snakey[0]]=='|'||table[snakex[0]-1][snakey[0]]=='-'||table[snakex[0]-1][snakey[0]]=='_')
+		gameContinue=0;
 		else
 			table[snakex[length]][snakey[length]]=0;
 			snakex[0]=snakex[1]-1;
 			snakey[0]=snakey[1];
 			table[snakex[0]][snakey[0]]='*';
+			
+			gotoxy(snakex[0],snakey[0]);
+			printf("*");
+			gotoxy(snakex[length],snakey[length]);
+			printf(" ");
 		
 	}
 	else if (direction=='s'){
-		int n;
-		for(n=length;n>0;n--){
-			snakex[n]=snakex[n-1];
-			snakey[n]=snakey[n-1];
-		}
 		if(table[snakex[0]][snakey[0]+1]=='O'){
 			length++;
 			newfood=1;
 		}
+		else if(table[snakex[0]][snakey[0]+1]=='|'||table[snakex[0]][snakey[0]+1]=='-'||table[snakex[0]][snakey[0]+1]=='_')
+		gameContinue=0;
 		else
 			table[snakex[length]][snakey[length]]=0;
 			snakex[0]=snakex[1];
 			snakey[0]=snakey[1]+1;
 			table[snakex[0]][snakey[0]]='*';
+			
+			gotoxy(snakex[0],snakey[0]);
+			printf("*");
+			gotoxy(snakex[length],snakey[length]);
+			printf(" ");
 		
 	}
 	else if (direction=='w'){
-		int n;
-		for(n=length;n>0;n--){
-			snakex[n]=snakex[n-1];
-			snakey[n]=snakey[n-1];
-		}
 		if(table[snakex[0]][snakey[0]-1]=='O'){
 			length++;
 			newfood=1;
 		}
+		else if(table[snakex[0]][snakey[0]-1]=='|'||table[snakex[0]][snakey[0]-1]=='-'||table[snakex[0]][snakey[0]-1]=='_')
+		gameContinue=0;
 		else
 			table[snakex[length]][snakey[length]]=0;
 			snakex[0]=snakex[1];
 			snakey[0]=snakey[1]-1;
-			table[snakex[0]][snakey[0]]='*';	
+			table[snakex[0]][snakey[0]]='*';
+			
+			gotoxy(snakex[0],snakey[0]);
+			printf("*");
+			gotoxy(snakex[length],snakey[length]);
+			printf(" ");
 	}
 }
 void foodGenerator(void){
@@ -135,5 +157,13 @@ void foodGenerator(void){
 	}
 	while(table[randx][randy]=='*');
 	table[randx][randy]='O';
+	gotoxy(randx,randy);
+	printf("O");
 }
-
+void gotoxy(int x, int y)
+{
+COORD coord;
+coord.X = x;
+coord.Y = y;
+SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
