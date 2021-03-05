@@ -47,7 +47,7 @@ int main (void){
 	}
 	gotoxy(0,100);
 	printf("Your Score is %d well done....",length);
-	sleep(1);
+	sleep(10);
 }
 void setTable(void){
 	int k;
@@ -90,7 +90,7 @@ void moveSnake (void){
 				length++;
 				newfood=1;
 			}
-			else if(table[snakex[0]+1][snakey[0]]=='|'||table[snakex[0]+1][snakey[0]]=='-'||table[snakex[0]+1][snakey[0]]=='_')
+			else if(table[snakex[0]+1][snakey[0]]=='|'||table[snakex[0]+1][snakey[0]]=='-'||table[snakex[0]+1][snakey[0]]=='_'||table[snakex[0]+1][snakey[0]]=='*')
 			gameContinue=0;
 			else
 			table[snakex[length]][snakey[length]]=0;
@@ -110,7 +110,7 @@ void moveSnake (void){
 			length++;
 			newfood=1;
 		}
-		else if (table[snakex[0]-1][snakey[0]]=='|'||table[snakex[0]-1][snakey[0]]=='-'||table[snakex[0]-1][snakey[0]]=='_')
+		else if (table[snakex[0]-1][snakey[0]]=='|'||table[snakex[0]-1][snakey[0]]=='-'||table[snakex[0]-1][snakey[0]]=='_'||table[snakex[0]-1][snakey[0]]=='*')
 		gameContinue=0;
 		else
 			table[snakex[length]][snakey[length]]=0;
@@ -129,7 +129,7 @@ void moveSnake (void){
 			length++;
 			newfood=1;
 		}
-		else if(table[snakex[0]][snakey[0]+1]=='|'||table[snakex[0]][snakey[0]+1]=='-'||table[snakex[0]][snakey[0]+1]=='_')
+		else if(table[snakex[0]][snakey[0]+1]=='|'||table[snakex[0]][snakey[0]+1]=='-'||table[snakex[0]][snakey[0]+1]=='_'||table[snakex[0]][snakey[0]+1]=='*')
 		gameContinue=0;
 		else
 			table[snakex[length]][snakey[length]]=0;
@@ -148,7 +148,7 @@ void moveSnake (void){
 			length++;
 			newfood=1;
 		}
-		else if(table[snakex[0]][snakey[0]-1]=='|'||table[snakex[0]][snakey[0]-1]=='-'||table[snakex[0]][snakey[0]-1]=='_')
+		else if(table[snakex[0]][snakey[0]-1]=='|'||table[snakex[0]][snakey[0]-1]=='-'||table[snakex[0]][snakey[0]-1]=='_'||table[snakex[0]][snakey[0]-1]=='*')
 		gameContinue=0;
 		else
 			table[snakex[length]][snakey[length]]=0;
