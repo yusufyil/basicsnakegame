@@ -183,7 +183,7 @@ SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 void gameStart(void){
 	int seconds=10;
-	printf("you can steer the snake \n");
+	printf("you can steer the snake with w,a,s,d keys\n");
 	printf("you can adjust game area by changing value of xcoord and ycoord.(both of them placed on top of the source code..)\n");
 	for(;seconds>=0;seconds--){
 		printf("game will start in %d seconds please make your game full screen..\n",seconds);
