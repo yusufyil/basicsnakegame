@@ -166,8 +166,8 @@ void foodGenerator(void){
 	int randx;
 	int randy;
 	do{
-	randx=rand()%(xcoord-1)+1;
-	randy=rand()%(ycoord-1)+1;
+	randx=rand()%(xcoord-2)+1;
+	randy=rand()%(ycoord-2)+1;
 	}
 	while(table[randx][randy]=='*');
 	table[randx][randy]='O';
