@@ -12,3 +12,8 @@ d for going right
 you change xcoord and ycoord values where on top of the source code, to fit game area to your individual screen i setted them 168 to 50 for my laptop.
 -------warning for mac and linux users----------
 this code may not be compile in linux or mac computers because of windows.h header file
+![Ekran Görüntüsü (49)](https://user-images.githubusercontent.com/77054769/113490143-f6d20700-94d0-11eb-8487-9b1123a5395e.png)
+![Ekran Görüntüsü (50)](https://user-images.githubusercontent.com/77054769/113490147-fafe2480-94d0-11eb-8ecc-902b8e305434.png)
+![Ekran Görüntüsü (51)](https://user-images.githubusercontent.com/77054769/113490151-fe91ab80-94d0-11eb-9224-60e873a94655.png)
+![Ekran Görüntüsü (52)](https://user-images.githubusercontent.com/77054769/113490154-02253280-94d1-11eb-87cf-d34e304cf3c7.png)
+
